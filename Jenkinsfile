@@ -45,7 +45,8 @@ pipeline{
              }
              environment name: "RUN_TEST", value:"true"
              environment name: "IS_PROD", value:"false"
-        },
+        }
+
         environment:{
             DOCKER_CRED = credentials('docker')
         }
@@ -72,7 +73,8 @@ pipeline{
                  }
                  environment name: "RUN_TEST", value:"true"
                  environment name: "IS_PROD", value:"false"
-            },
+            }
+
             environment:{
                 DOCKER_CRED = credentials('docker')
                 DOCKER_HOST = 'tcp://10.132.112.21:2376'
@@ -89,7 +91,7 @@ pipeline{
                 when{
                      branch "release"
                      environment name: "IS_PROD", value:"false"
-                },
+                }
                 steps{
                     input message: 'Deploy  to RPOD?'
                 }
@@ -101,7 +103,8 @@ pipeline{
                 when{
                      branch "release"
                      environment name: "IS_PROD", value:"false"
-                },
+                }
+                
                 environment:{
                     // TODO
                     DOCKER_CRED = credentials('docker')
