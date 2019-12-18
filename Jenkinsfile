@@ -26,11 +26,11 @@ pipeline{
                            ./gradlew clean test
                         '''
                 }
+           	finally{
+                	junit keepLongStdio: true, testResults: "**/test-results/**/*.xml"
+          	 }
+        	}
            }
-           finally{
-                junit keepLongStdio: true, testResults: "**/test-results/**/*.xml"
-           }
-        }
     },
     stage('Build'){
         agent{
