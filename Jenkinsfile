@@ -5,6 +5,7 @@ pipeline{
     }
 
    stages{
+
     stage('Test'){
         agent{
             label 'docker'
@@ -31,7 +32,8 @@ pipeline{
           	 }
         	}
            }
-    },
+    }
+
     stage('Build'){
         agent{
             label 'docker'
@@ -58,7 +60,7 @@ pipeline{
                docker rmi linksgo2011/samples:daily-wechat-$GIT_COMMIT
             '''
         }
-    },
+    }
     stage('Deploy dev'){
             agent{
                 label 'docker'
@@ -81,7 +83,7 @@ pipeline{
                     docker stack deploy -c docker-compose.yaml daily-wechat
                 '''
             }
-        },
+        }
 
         stage('Approve of Deploy PROD'){
                 when{
@@ -91,7 +93,7 @@ pipeline{
                 steps{
                     input message: 'Deploy  to RPOD?'
                 }
-            },
+            }
         stage('Deploy PROD'){
                 agent{
                     label 'docker'
